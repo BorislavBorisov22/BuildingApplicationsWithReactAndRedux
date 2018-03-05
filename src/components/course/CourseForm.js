@@ -27,7 +27,7 @@ const CourseForm =  ({course, allAuthors, onSave, onChange, loading, errors}) =>
 
              <TextInput 
                 name="category"
-                label="category"
+                label="Category"
                 value={course.category}
                 onChange={onChange}
                 error={errors.category}
@@ -37,7 +37,7 @@ const CourseForm =  ({course, allAuthors, onSave, onChange, loading, errors}) =>
 
              <TextInput 
                 name="length"
-                label="lenght"
+                label="Length"
                 value={course.length}
                 onChange={onChange}
                 error={errors.title}
