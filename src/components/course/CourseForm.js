@@ -14,6 +14,7 @@ const CourseForm =  ({course, allAuthors, onSave, onChange, loading, errors}) =>
                 error={errors.title}
             />
 
+            <br />
             <SelectInput 
                 name="authorId"
                 label="authorId"
@@ -32,6 +33,8 @@ const CourseForm =  ({course, allAuthors, onSave, onChange, loading, errors}) =>
                 error={errors.category}
             />
 
+            <br />
+
              <TextInput 
                 name="length"
                 label="lenght"
@@ -40,13 +43,15 @@ const CourseForm =  ({course, allAuthors, onSave, onChange, loading, errors}) =>
                 error={errors.title}
             />
 
-            <input onClick={onSave} type="button" className="btn btn-default"  value="Save"/>
+            <br />
+
+            <input onClick={onSave} type="button" className="btn btn-primary"  value="Save"/>
         </form>
     );
 };
 
 CourseForm.propTypes = {
-    course: PropTypes.object.IsRequired,
+    course: PropTypes.object.isRequired,
     allAuthors: PropTypes.array,
     onSave: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
