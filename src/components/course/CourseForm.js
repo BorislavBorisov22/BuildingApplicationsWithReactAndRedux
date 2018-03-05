@@ -45,7 +45,7 @@ const CourseForm =  ({course, allAuthors, onSave, onChange, loading, errors, sav
 
             <br />
 
-            <input onClick={onSave} type="button" className="btn btn-primary" disabled={saving}  value="Save"/>
+            <input onClick={onSave} type="button" className="btn btn-primary" disabled={saving}  value={saving ? 'Saving...' : 'Save'}/>
         </form>
     );
 };
