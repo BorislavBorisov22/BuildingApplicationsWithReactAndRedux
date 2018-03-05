@@ -1,4 +1,4 @@
-export default (state = [], action) => {
+export default function courseReducer(state = [], action) {
     switch(action.type) {
         case 'CREATE_COURSE': 
             return [
@@ -8,4 +8,4 @@ export default (state = [], action) => {
         default: 
             return state;
     }
-};
+}
