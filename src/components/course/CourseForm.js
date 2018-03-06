@@ -40,7 +40,7 @@ const CourseForm =  ({course, allAuthors, onSave, onChange, loading, errors, sav
                 label="Length"
                 value={course.length}
                 onChange={onChange}
-                error={errors.title}
+                error={errors.length}
             />
 
             <br />
