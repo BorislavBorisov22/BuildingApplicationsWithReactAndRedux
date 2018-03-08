@@ -14,7 +14,7 @@ import { loadAuthors } from './actions/authorActions';
 
 const store = configureStore();
 store.dispatch(loadCourses());
-store.dispatch(loadAuthors())
+store.dispatch(loadAuthors());
 
 render(
     <Provider store={store}>
