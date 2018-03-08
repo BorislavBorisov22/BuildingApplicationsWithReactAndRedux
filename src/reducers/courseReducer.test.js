@@ -18,6 +18,7 @@ describe('Course reducer', () => {
         const newState = courseReducer(initialState, action);
 
         // assert
+        expect(newState.length).toEqual(3);
         expect(newState).toEqual([...initialState, newCourse]);
     });
 });
