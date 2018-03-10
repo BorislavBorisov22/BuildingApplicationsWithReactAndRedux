@@ -19,7 +19,7 @@ export function loadAuthors() {
             throw err;
         });
     };
-} 
+}
 
 export function deleteAuthor(authorId) {
     return dispatch => {

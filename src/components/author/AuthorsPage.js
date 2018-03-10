@@ -2,17 +2,29 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authorActions from '../../actions/authorActions';
+import * as ajaxActions from '../../actions/ajaxStatusActions';
 import AuthorsList from './AuthorsList';
+import toastr from 'toastr';
 
 class AuthorsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+        this.deleteAuthor = this.deleteAuthor.bind(this);
+    }
+
+    deleteAuthor(authorId) {
+        this.props.actions
+            .deleteAuthor(authorId)
+            .catch(err => {
+                toastr.error(err);
+            });
     }
 
     render() {
         return (
             <div>
-                <AuthorsList authors={this.props.authors}/>
+                <AuthorsList deleteAuthor={this.deleteAuthor} authors={this.props.authors}/>
             </div>
         );
     }
@@ -21,7 +33,7 @@ class AuthorsPage extends React.Component {
 AuthorsPage.propTypes = {
     authors: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
-}
+};
 
 function mapStateToProps(state) {
     return {
@@ -31,7 +43,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(authorActions, dispatch)
+        actions: bindActionCreators(Object.assign({}, authorActions, ajaxActions), dispatch)
     };
 }
 
