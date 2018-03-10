@@ -4,9 +4,16 @@ import TextInput from './../common/TextInput';
 const AuthorForm = ({ author, onSave, onChange, errors }) => {
     return (
         <div>
-            <TextInput onChange={onChange} error={errors.firstName} />
-            <TextInput onChange={onChange} error={errors.lastName} />
-            <input type="submit" onClick={onSave}/>
+            <h1>Manage Author</h1>
+
+            <br />
+            <TextInput onChange={onChange} label="First Name" name="firstName" error={errors.firstName} />
+
+            <br />
+            <TextInput onChange={onChange} label="Last Name" name="lastName" error={errors.lastName} />
+
+            <br />
+            <input type="submit" className="btn btn-primary" onClick={onSave}/>
         </div>
     );
 };

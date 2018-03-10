@@ -5,6 +5,7 @@ import * as authorActions from '../../actions/authorActions';
 import * as ajaxActions from '../../actions/ajaxStatusActions';
 import AuthorsList from './AuthorsList';
 import toastr from 'toastr';
+import { Link } from 'react-router';
 
 class AuthorsPage extends React.Component {
     constructor(props, context) {
@@ -25,6 +26,8 @@ class AuthorsPage extends React.Component {
     render() {
         return (
             <div>
+                <br />
+                <Link className="btn btn-primary" to="/author">Add Author</Link>
                 <AuthorsList deleteAuthor={this.deleteAuthor} authors={this.props.authors}/>
             </div>
         );
