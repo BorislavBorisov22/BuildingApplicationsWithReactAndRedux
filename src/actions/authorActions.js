@@ -6,8 +6,8 @@ export function loadAuthorsSuccess(authors) {
     return { type: LOAD_AUTHORS_SUCCESS, authors };
 }
 
-export function deleteAuthorSuccess() {
-    return { type: DELETE_AUTHOR_SUCCESS };
+export function deleteAuthorSuccess(authorId) {
+    return { type: DELETE_AUTHOR_SUCCESS, authorId };
 }
 
 export function loadAuthors() {
@@ -25,7 +25,7 @@ export function deleteAuthor(authorId) {
     return dispatch => {
         dispatch(beginAjaxCall());
         return authorApi.deleteAuthor(authorId).then(() => {
-            dispatch(deleteAuthorSuccess());
+            dispatch(deleteAuthorSuccess(authorId));
         }).catch(err => {
             throw err;
         });

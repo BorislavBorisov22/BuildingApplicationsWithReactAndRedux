@@ -18,6 +18,7 @@ class AuthorsPage extends React.Component {
             .deleteAuthor(authorId)
             .catch(err => {
                 toastr.error(err);
+                this.props.actions.errorAjaxCall();
             });
     }
 
