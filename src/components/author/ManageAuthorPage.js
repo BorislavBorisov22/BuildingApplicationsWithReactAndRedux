@@ -85,12 +85,23 @@ ManageAuthorPage.contextTypes = {
     router: PropTypes.object
 };
 
-function mapStateToProps(state, ownProps) {
+function findAuthorById(authors, authorId) {
+    return authors.find(a => a.id === authorId);
+}
+
+function defaultAuthor() {
     return {
-        author: {
-            firstName: '',
-            lastName: ''
-        }
+        firstName: '',
+        lastName: ''
+    };
+}
+
+function mapStateToProps(state, ownProps) {
+    const authorId = ownProps.params.id;
+    const author = authorId ? findAuthorById(state.authors, authorId) : defaultAuthor();
+
+    return {
+        author
     };
 }
 

@@ -9,7 +9,7 @@ const AuthorListRow = ({ author, deleteAuthor }) => {
     return (
         <tr>
           <td><a href="#" onClick={deleteAuthorClick}>Delete</a></td>
-          <td><Link to={`/course/${author.id}`}>{author.id}</Link></td>
+          <td><Link to={`/author/${author.id}`}>{author.id}</Link></td>
           <td>{author.firstName}</td>
           <td>{author.lastName}</td>
         </tr>

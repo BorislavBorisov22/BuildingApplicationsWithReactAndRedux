@@ -7,10 +7,10 @@ const AuthorForm = ({ author, onSave, onChange, errors }) => {
             <h1>Manage Author</h1>
 
             <br />
-            <TextInput onChange={onChange} label="First Name" name="firstName" error={errors.firstName} />
+            <TextInput onChange={onChange} label="First Name" value={author.firstName} name="firstName" error={errors.firstName} />
 
             <br />
-            <TextInput onChange={onChange} label="Last Name" name="lastName" error={errors.lastName} />
+            <TextInput onChange={onChange} label="Last Name" value={author.lastName} name="lastName" error={errors.lastName} />
 
             <br />
             <input type="submit" className="btn btn-primary" onClick={onSave}/>
