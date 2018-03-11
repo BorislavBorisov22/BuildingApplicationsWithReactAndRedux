@@ -5,15 +5,18 @@ import { bindActionCreators } from 'redux';
 import CourseForm from './CourseForm';
 import toastr from 'toastr';
 import { authorsFormattedForDropdown } from './../../selectors/selectors';
+import { Router } from 'react-router';
 
 export class ManageCoursePage extends React.Component {
+
     constructor(props, context) {
         super(props, context);
 
         this.state = {
             course: Object.assign({}, this.props.course),
             errors: {},
-            saving: false
+            saving: false,
+            dirty: false
         };
 
         this.updateCourseState = this.updateCourseState.bind(this);
