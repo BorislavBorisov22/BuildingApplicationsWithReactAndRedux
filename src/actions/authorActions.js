@@ -43,10 +43,10 @@ export function deleteAuthor(authorId) {
 export function saveAuthor(author) {
     return dispatch => {
         dispatch(beginAjaxCall());
-        return authorApi.saveAuthor(author).then(() => {
+        return authorApi.saveAuthor(author).then((savedAuthor) => {
             author.id ? 
                 dispatch(updateAuthorSuccess(author)) :
-                dispatch(createAuthorSuccess(author));
+                dispatch(createAuthorSuccess(savedAuthor));
         }).catch(err => {
             errorAjaxCall();
             throw err;

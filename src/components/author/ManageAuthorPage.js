@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as authorActions from '../../actions/authorActions';
 import * as ajaxActions from '../../actions/ajaxStatusActions';
 import { connect } from 'react-redux';
+import toastr from 'toastr';
+
 
 class ManageAuthorPage extends React.Component {
     constructor(props, context) {
@@ -43,6 +45,12 @@ class ManageAuthorPage extends React.Component {
         if (!this.isFormValid()) {
             return;
         }
+
+        this.props.actions.saveAuthor(this.state.author)
+            .then(() => {
+                toastr.success('Author added successfully');
+                this.context.router.push('/authors');
+            });
     }
 
     updateAuthorState(event) {
@@ -69,7 +77,12 @@ class ManageAuthorPage extends React.Component {
 }
 
 ManageAuthorPage.propTypes = {
-    author: PropTypes.object.isRequired
+    author: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
+};
+
+ManageAuthorPage.contextTypes = {
+    router: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
@@ -87,4 +100,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapDispatchToProps, mapStateToProps)(ManageAuthorPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageAuthorPage);
