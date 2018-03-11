@@ -48,8 +48,12 @@ CoursesPage.propTypes = {
 };
 
 function mapStateToProps(state, props) {
+    const sortedCourses = Object
+        .assign([], state.courses)
+        .sort((a, b) => a.title.localeCompare(b.title));
+
     return {
-        courses: state.courses
+        courses: sortedCourses
     };
 }
 

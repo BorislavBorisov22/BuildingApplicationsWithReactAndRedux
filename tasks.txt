@@ -4,7 +4,7 @@
 4. Unsaved changes message
 5. Client side validation - DONE
 6. Handle 404's
-7. Show # courses in Header
-8. Pagination
+7. Show # courses in Header - DONE
+8. Pagination - DONE
 9. Sort course table
 10. Revert abandoned changes
