@@ -18,8 +18,31 @@ class ManageAuthorPage extends React.Component {
         this.updateAuthorState = this.updateAuthorState.bind(this);
     }
 
+    isFormValid() {
+        const errors = {};
+        let isValid = true;
+
+        if (this.state.author.firstName.length < 4) {
+            errors.firstName = 'First name must be at least 4 characters!';
+            isValid = false;
+        }
+
+        if (this.state.author.lastName.length < 4) {
+            errors.lastName = 'Last Name must be at least 4 characters!';
+            isValid = false;
+        }
+
+        this.setState({
+            errors: errors
+        });
+
+        return isValid;
+    }
+
     saveAuthor() {
-        console.log(this.state.author);
+        if (!this.isFormValid()) {
+            return;
+        }
     }
 
     updateAuthorState(event) {
