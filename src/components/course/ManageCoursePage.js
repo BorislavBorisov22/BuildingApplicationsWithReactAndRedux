@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import * as courseActions from '../../actions/courseActions';
+import * as unsavedCourseAction from '../../actions/unsavedCourseChangesActions';
 import { bindActionCreators } from 'redux';
 import CourseForm from './CourseForm';
 import toastr from 'toastr';
@@ -31,6 +32,12 @@ export class ManageCoursePage extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        if (this.state.dirty) {
+            this.props.actions.storeUnsavedChanges(this.state.course);
+        }
+    }
+
     updateCourseState(event) {
         const fieldName = event.target.name;
         const value = event.target.value;
@@ -38,7 +45,8 @@ export class ManageCoursePage extends React.Component {
         const updatedCourse = this.state.course;
         updatedCourse[fieldName] = value;
         this.setState({
-            course: updatedCourse
+            course: updatedCourse,
+            dirty: true
         });
     }
 
@@ -67,6 +75,9 @@ export class ManageCoursePage extends React.Component {
         this.setState({saving: true});
         this.props.actions.saveCourse(this.state.course)
             .then(() => {
+                this.setState({
+                    dirty: false
+                });
                 this.redirect();
             })
             .catch(error => {
@@ -124,8 +135,8 @@ function getDefaultCourse() {
 
 function mapStateToProps(state, ownProps) {
     const courseId = ownProps.params.id;
-    
-    const course = courseId ? getCourseById(state.courses, courseId) : getDefaultCourse();
+
+    const course = courseId ? getCourseById(state.courses, courseId) : state.unsavedCourse;
 
     return {
         course: course,
@@ -134,9 +145,11 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(courseActions, dispatch)
+    const mappedDispatchProps = {
+        actions: bindActionCreators(Object.assign({}, courseActions, unsavedCourseAction), dispatch)
     };
+
+    return mappedDispatchProps;
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
