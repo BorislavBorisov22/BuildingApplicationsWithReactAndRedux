@@ -14,7 +14,7 @@ const CourseList = ({ courses, deleteCourse }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
+                    {  courses.length &&
                         courses.map(course => <CourseListRow deleteCourse={deleteCourse} key={course.id} course={course}/>)
                     }
                 </tbody>

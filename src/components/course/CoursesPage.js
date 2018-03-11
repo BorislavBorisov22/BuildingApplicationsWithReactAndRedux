@@ -32,7 +32,10 @@ class CoursesPage extends React.Component {
                     className="btn btn-primary"
                     onClick={this.redirectToAddCoursePage}
                 />
+                {
+                 !this.props.courses.length ? '' :
                 <CourseList deleteCourse={this.deleteCourse} courses={this.props.courses} />
+                }
             </div>
         );
     }
