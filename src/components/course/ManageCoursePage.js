@@ -35,6 +35,7 @@ export class ManageCoursePage extends React.Component {
     componentWillUnmount() {
         if (this.state.dirty) {
             this.props.actions.storeUnsavedChanges(this.state.course);
+            toastr.warning('Current changes are kept if you want to continue your work later :)');
         }
     }
 
