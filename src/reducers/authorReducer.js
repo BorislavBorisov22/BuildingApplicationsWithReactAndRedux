@@ -1,6 +1,5 @@
-import { LOAD_AUTHORS_SUCCESS, UPDATE_AUTHOR_SUCCESS } from "../actions/actionTypes";
+import { LOAD_AUTHORS_SUCCESS, UPDATE_AUTHOR_SUCCESS,  DELETE_AUTHOR_SUCCESS, CREATE_AUTHOR_SUCCESS } from '../actions/actionTypes';
 import initialState from "./initialState";
-import { DELETE_AUTHOR_SUCCESS, CREATE_AUTHOR_SUCCESS } from './../actions/actionTypes';
 
 export default function authorReducer(state = initialState.authors, action) {
     switch(action.type) {

@@ -1,8 +1,8 @@
-1. Author administration
+1. Author administration - DONE
 2. Delete course
 3. Hide empty course list
 4. Unsaved changes message
-5. Client side validation
+5. Client side validation - DONE
 6. Handle 404's
 7. Show # courses in Header
 8. Pagination

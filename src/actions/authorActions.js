@@ -45,7 +45,7 @@ export function saveAuthor(author) {
         dispatch(beginAjaxCall());
         return authorApi.saveAuthor(author).then((savedAuthor) => {
             author.id ? 
-                dispatch(updateAuthorSuccess(author)) :
+                dispatch(updateAuthorSuccess(savedAuthor)) :
                 dispatch(createAuthorSuccess(savedAuthor));
         }).catch(err => {
             errorAjaxCall();

@@ -13,7 +13,8 @@ class ManageAuthorPage extends React.Component {
 
         this.state = {
             errors: {},
-            author: props.author
+            author: props.author,
+            saving: false
         };
 
         this.saveAuthor = this.saveAuthor.bind(this);
@@ -41,15 +42,26 @@ class ManageAuthorPage extends React.Component {
         return isValid;
     }
 
-    saveAuthor() {
+    saveAuthor(event) {
+    event.preventDefault();
+
         if (!this.isFormValid()) {
             return;
         }
+
+        this.setState({
+            saving: true
+        });
 
         this.props.actions.saveAuthor(this.state.author)
             .then(() => {
                 toastr.success('Author added successfully');
                 this.context.router.push('/authors');
+            }).catch((err) => {
+                toastr.error(err);
+                this.setState({
+                    saving: false
+                });
             });
     }
 
@@ -57,10 +69,10 @@ class ManageAuthorPage extends React.Component {
         const value = event.target.value;
         const fieldName = event.target.name;
 
-        const updatedAuthor = this.state.author;
-        updatedAuthor[fieldName] = value;
+        const authorUpdate = this.state.author;
+        authorUpdate[fieldName] = value;
         this.setState({
-            author: updatedAuthor
+            author: authorUpdate
         });
     }
 
@@ -71,6 +83,7 @@ class ManageAuthorPage extends React.Component {
                 onSave={this.saveAuthor}
                 onChange={this.updateAuthorState}
                 errors={this.state.errors}
+                saving={this.state.saving}
             />
         );
     }

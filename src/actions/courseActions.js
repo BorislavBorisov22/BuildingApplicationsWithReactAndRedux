@@ -14,6 +14,10 @@ export function createCourseSuccess(course) {
     return { type: actionTypes.CREATE_COURSE_SUCCESS, course };
 }
 
+export function deleteCourseSuccess(courseId) {
+    return { type: actionTypes.DELETE_COURSE_SUCCESS, courseId };
+}
+
 export function loadCourses() {
     return function(dispatch) {
         dispatch(beginAjaxCall());
@@ -36,4 +40,16 @@ export function saveCourse(course) {
             throw err;
         });
     };
+}
+
+export function deleteCourse(courseId) {
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        return courseApi.deleteCourse(courseId).then(() => {
+            dispatch(deleteCourseSuccess(courseId));
+        }).catch(err => {
+            dispatch(errorAjaxCall());
+            throw err;
+        });
+    }
 }
